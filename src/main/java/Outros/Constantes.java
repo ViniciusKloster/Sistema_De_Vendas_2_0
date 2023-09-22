@@ -15,6 +15,8 @@ public class Constantes {
     public static final int LISTAR = 4;
     
     public static final int CATEGORIA_VIDEOGAME = 1;
-    public static final int CATEGORIA_COMPUTADOR = 2;        
+    public static final int CATEGORIA_COMPUTADOR = 2;  
+    
+    public static final String REMOVER_SIM = "s";
     
 }

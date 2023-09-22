@@ -28,7 +28,7 @@ public class Produto {
     }
 
     public void setPreco(Double preco) {
-        this.preco = prec;
+        this.preco = preco;
     }
     
     

@@ -11,6 +11,7 @@ import Visao.VisaoComputador;
 import Visao.VisaoMenu;
 import Visao.VisaoVideoGame;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -36,25 +37,25 @@ public class ControleSistema {
        
        Object object = produtos.get(indiceProduto);
        
-       if(object instanceof VideoGame){
-           VideoGame videoGame = new VideoGame();
-           videoGame = (VideoGame) object;
-           
-           System.out.println("Alterando o produto: " + videoGame.toString());
-           
-           videoGame = (VideoGame) VisaoMenu.menuAlteracaoProdutoInformacoes(videoGame);
-           
-           ControleSistema.produtos.set(indiceProduto, videoGame);
-       }else if(object instanceof Computador){
-           Computador computador = new Computador();
-           computador = (Computador) object;
-           
-           System.out.println("Alterando o produto: " + computador.toString());
-           
-           computador = (Computador) VisaoMenu.menuAlteracaoProdutoInformacoes(computador);
-           
-           ControleSistema.produtos.set(indiceProduto, computador);
-       }
+        if(object instanceof VideoGame){
+            VideoGame videoGame = new VideoGame();
+            videoGame = (VideoGame) object;
+
+            System.out.println("Alterando o produto: " + videoGame.toString());
+
+            videoGame = (VideoGame) VisaoMenu.menuAlteracaoProdutoInformacoes(videoGame);
+
+            ControleSistema.produtos.set(indiceProduto, videoGame);
+        }else if(object instanceof Computador){
+            Computador computador = new Computador();
+            computador = (Computador) object;
+
+            System.out.println("Alterando o produto: " + computador.toString());
+
+            computador = (Computador) VisaoMenu.menuAlteracaoProdutoInformacoes(computador);
+
+            ControleSistema.produtos.set(indiceProduto, computador);
+        }
     }
     
     public static void listar(ArrayList<Object> produtos){
@@ -73,5 +74,33 @@ public class ControleSistema {
        System.out.println("==========================================");
     }
 
-   
+    public static void remover(int indiceProduto){
+        indiceProduto = indiceProduto - 1;
+
+        Object object = produtos.get(indiceProduto);
+
+        System.out.println("=============REMOVER PRODUTO=============="); 
+
+        if(object instanceof VideoGame){
+            VideoGame videoGame = new VideoGame();
+            videoGame = (VideoGame) object;
+            System.out.println("Deseja remover o produto " + videoGame.getNome() + " ? S/N");
+
+        }else if(object instanceof Computador){
+            Computador computador = new Computador();
+            computador = (Computador) object;
+            System.out.println("Deseja remover o produto " + computador.getNome() + " ? S/N");
+
+        }    
+            String sn = new Scanner(System.in).next().toLowerCase();
+
+            if(sn.equals(Constantes.REMOVER_SIM)){
+                try{
+                    produtos.remove(indiceProduto);
+                    System.out.println("Produto removido com sucesso!");
+                }catch(Exception e){
+                    System.out.println("Produto não encontrado");
+                }
+           }
+    }
 }
