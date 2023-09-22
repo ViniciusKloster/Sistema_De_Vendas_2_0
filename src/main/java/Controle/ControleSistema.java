@@ -76,31 +76,39 @@ public class ControleSistema {
 
     public static void remover(int indiceProduto){
         indiceProduto = indiceProduto - 1;
-
-        Object object = produtos.get(indiceProduto);
-
+        
+        Object object = null;
+        
+        try{
+        object = produtos.get(indiceProduto);
+        }catch(Exception e){}
+        
         System.out.println("=============REMOVER PRODUTO=============="); 
+        
+            if(object != null){
+            if(object instanceof VideoGame){
+                VideoGame videoGame = new VideoGame();
+                videoGame = (VideoGame) object;
+                System.out.println("Deseja remover o produto " + videoGame.getNome() + " ? S/N");
 
-        if(object instanceof VideoGame){
-            VideoGame videoGame = new VideoGame();
-            videoGame = (VideoGame) object;
-            System.out.println("Deseja remover o produto " + videoGame.getNome() + " ? S/N");
+            }else if(object instanceof Computador){
+                Computador computador = new Computador();
+                computador = (Computador) object;
+                System.out.println("Deseja remover o produto " + computador.getNome() + " ? S/N");
 
-        }else if(object instanceof Computador){
-            Computador computador = new Computador();
-            computador = (Computador) object;
-            System.out.println("Deseja remover o produto " + computador.getNome() + " ? S/N");
+            }    
+                String sn = new Scanner(System.in).next().toLowerCase();
 
-        }    
-            String sn = new Scanner(System.in).next().toLowerCase();
-
-            if(sn.equals(Constantes.REMOVER_SIM)){
-                try{
+                if(sn.equals(Constantes.REMOVER_SIM)){
+                    
                     produtos.remove(indiceProduto);
                     System.out.println("Produto removido com sucesso!");
-                }catch(Exception e){
-                    System.out.println("Produto não encontrado");
                 }
-           }
+            
+            }else{
+                    System.out.println("Produto não encontrado");
+                
+        }
+        System.out.println("==========================================");
     }
 }
